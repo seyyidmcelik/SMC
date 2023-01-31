@@ -1,0 +1,39 @@
+main {
+    height: 100vh;
+    padding: 3%;
+    padding-top: 150px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+main .board {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .info-container {
+    width: 60%;
+    height: 100%;
+}
+
+main .user-info {
+    padding-top: 15px;
+    line-height: 25px;
+}
+
+main h1 {
+    padding-bottom: 7px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+main .user-image {
+    width: 30%;
+    height: 500px;
+    background: url("https://images.unsplash.com/photo-1581382575275-97901c2635b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80")
+        no-repeat;
+    border-radius: 15px;
+}

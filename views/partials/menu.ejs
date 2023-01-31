@@ -1,0 +1,12 @@
+<nav>
+    <ul>
+        <li><a href="/gallery" class="<%= link === 'gallery' && 'active' %>">Gallery</a></li>
+        <% if (user) { %>
+            <li><a href="/users/dashboard" class="<%= link === 'dashboard' && 'active' %>">Dashboard</a></li>
+            <li><a href="/logout">Log Out</a></li>
+        <% } else { %>
+            <li><a href="/login" class="<%= link === "login" && 'active' %> ">Log In</a></li>
+            <li><a href="/register" class="<%= link === "register" && 'active' %> ">Register</a></li>
+        <% } %> 
+    </ul>
+</nav>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %> 
+    <!-- If you would like to add new css link -->
+    <link rel="stylesheet" href="/styles/login.css">
+</head>
+<body>
+    <%- include('partials/header.ejs') %> 
+    <main>
+        <div class="login-img"></div>
+        <div class="form-container">
+            <form action="users/login" method="post" autocomplete="off">
+                <h1 class="title">Welcome to SMC</h1>
+                <div class="form-controller title">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" placeholder="Type your email" />
+                    <div id="email" class="error"></div>
+                </div>
+                <div class="form-controller title">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Type your password" />
+                    <div id="password" class="error"></div>
+                </div>
+                <input type="submit" class="title" />
+            </form>
+        </div>
+    </main>
+
+    <script>
+        const form = document.querySelector('form')
+        const emailError = document.querySelector('#email')
+        const passwordError = document.querySelector('#password')
+        
+        form.addEventListener("submit", async (e) => {
+           e.preventDefault();
+
+           emailError.textContent = "";
+           passwordError.textContent = "";
+
+           emailError.style.display = "none"
+           passwordError.style.display = "none"
+
+           const email = form.email.value
+           const password = form.password.value
+           try {
+              const res = await fetch('users/login', {
+                 method: "POST",
+                 body: JSON.stringify({ email, password }),
+                 headers: { "Content-Type": "application/json" }
+              })
+              const data = await res.json();
+              if (data.emailError || data.passwordError) {
+                 if (data.emailError) {
+                    emailError.textContent = data.emailError
+                    emailError.style.display = "block"
+                 }
+                 if (data.passwordError) {
+                    passwordError.textContent = data.passwordError
+                    passwordError.style.display = "block"
+                 }
+              }else {
+                location.assign("/users/dashboard")
+              }
+           } catch (err) {
+              console.log("ERR::", err)
+           }
+        })
+    </script>
+
+    <script src="/scripts/animate.js"></script>
+</body>
+</html>

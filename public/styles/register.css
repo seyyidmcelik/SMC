@@ -1,0 +1,100 @@
+main {
+    height: 100vh;
+    padding: 3%;
+    padding-top: 100px;
+    display: flex;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+main .login-img {
+    width: 60vw;
+    height: 100%;
+    box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.7);
+    background: url("/images/signin.webp");
+    background-size: cover;
+    border-radius: 5px;
+}
+
+main .form-container {
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+main form {
+    width: 300px;
+}
+
+main .form-controller {
+    padding-top: 25px;
+}
+
+main .form-controller label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+main .form-controller input {
+    width: 100%;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid black;
+    padding: 7px;
+}
+
+main input[type="submit"] {
+    margin-top: 25px;
+    padding: 7px 14px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 165, 0, 0.3);
+    color: rgba(255, 165, 0, 1);
+    background-color: rgba(255, 165, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    font-style: italic;
+}
+
+main input[type="submit"]:hover {
+    box-shadow: 0 0 10px 0 rgba(255, 165, 0, 0.3);
+}
+
+.title {
+    position: relative;
+    bottom: -50px;
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+.title:nth-child(2) {
+    transition-delay: 0.4s;
+}
+
+.title:nth-child(3) {
+    transition-delay: 0.8s;
+}
+
+.title:nth-child(4) {
+    transition-delay: 1.2s;
+}
+
+.title:nth-child(5) {
+    transition-delay: 1.6s;
+}
+
+.title:nth-child(6) {
+    transition-delay: 2s;
+}
+
+.fadeIn {
+    opacity: 1;
+    bottom: 0;
+}
+
+.error {
+    font-size: small;
+    color: rgba(255, 0, 0, 1);
+}

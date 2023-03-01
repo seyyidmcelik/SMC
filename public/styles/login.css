@@ -32,6 +32,26 @@ main .form-controller {
     padding-top: 25px;
 }
 
+main .form-controller:nth-child(4) {
+    display: flex;
+    align-items: center;
+    padding-top: 0;
+}
+
+main .form-controller:nth-child(4) input {
+    width: auto;
+}
+
+main .form-controller:nth-child(4) a {
+    margin: 25px 0 0 25px;
+    color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+}
+
+main .form-controller:nth-child(4) a:hover {
+    text-shadow: 0 0 1px black;
+}
+
 main .form-controller label {
     display: block;
     font-size: 20px;
@@ -94,3 +114,140 @@ main input[type="submit"]:hover {
     font-size: small;
     color: rgba(255, 0, 0, 1);
 }
+
+/* Modal Start */
+.modal {
+    width: 100%;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.7);
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+#password-modal form {
+    width: 350px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+#password-modal h3 {
+    position: relative;
+    padding: 5px;
+    font-size: 25px;
+}
+
+#password-modal h3::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+
+#password-modal span {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+#password-modal .form-controller {
+    padding-top: 15px;
+}
+
+#password-modal .form-controller label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+#password-modal .form-controller input {
+    width: 100%;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid black;
+    padding: 7px;
+}
+
+#password-modal input[type="submit"] {
+    display: block;
+    margin-top: 25px;
+    margin-left: auto;
+    padding: 7px 14px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 165, 0, 0.3);
+    color: rgba(255, 165, 0, 1);
+    background-color: rgba(255, 165, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    font-style: italic;
+}
+
+#password-modal input[type="submit"]:hover {
+    box-shadow: 0 0 10px 0 rgb(255 165 0 / 30%);
+}
+
+.active-modal {
+    height: 100%;
+}
+
+/* Modal End */
+
+/* Toast Modal Start */
+.toast {
+    width: 300px;
+    height: max-content;
+    position: fixed;
+    bottom: 20px;
+    right: -320px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
+    border-radius: 5px;
+    z-index: 6;
+    transition: right 0.5s ease-in-out;
+}
+
+.toast-title-container {
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+.toast-success {
+    background-color: rgb(0, 128, 0);
+    box-shadow: 0px 0px 10px 0px rgba(0, 128, 0, 1);
+    color: #fff;
+}
+
+.toast-danger {
+    background-color: rgb(255, 0, 0);
+    box-shadow: 0px 0px 10px 0px rgba(255, 0, 0, 1);
+    color: #fff;
+}
+
+.toast-info {
+    background-color: rgb(173, 216, 230);
+    box-shadow: 0px 0px 10px 0px rgba(173, 216, 230, 1);
+    color: #fff;
+}
+
+.toast-content-container {
+    padding: 0 10px 10px 10px;
+}
+
+.active-toast {
+    right: 20px;
+}
+
+/* Toast Modal End */

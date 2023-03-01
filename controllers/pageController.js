@@ -1,10 +1,6 @@
 const indexPage = (req, res) => {
-    res.render('index', { link: 'index' })
-}
-
-const gallery = (req, res) => {
-    res.render('gallery', {
-        link: 'gallery'
+    res.render('index', {
+        link: 'index'
     })
 }
 
@@ -18,6 +14,9 @@ const logout = (req, res) => {
     res.cookie('jwt', '', {
         maxAge: 1
     })
+    res.cookie('to', '', {
+        maxAge: 1
+    })
     res.redirect('/')
 }
 
@@ -27,4 +26,4 @@ const register = (req, res) => {
     })
 }
 
-export { indexPage, gallery, login, register, logout }
+export { indexPage, login, register, logout }

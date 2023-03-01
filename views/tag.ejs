@@ -9,14 +9,14 @@
     <%- include('partials/header.ejs') %> 
     <main>
         <div class="gallery-container">
-            <% for(let photo of allPhotos) { %> 
+            <% for(let photo of photos) { %> 
                 <div class="gallery-item">
                     <img src="<%= photo.url %>" alt="<%= photo.username %>" />
                     <div class="gallery-item-info">
                         <div class="info-container">
                             <div class="info-title"><%= photo.owner.username %></div>
                             <div class="content">
-                                <% if(photo.description && photo.description.length > 250) { %> 
+                                <% if(photo.description.length > 250) { %> 
                                     <%= photo.description.substring(0,250)+"..." %>
                                 <% }else { %>
                                     <%= photo.description %>
@@ -27,10 +27,7 @@
                                     <div class="tag"><a href="/gallery/tags?tag=<%= tag.split('#')[1] %>"><%= tag %></a></div>
                                 <% } %>
                             </div>
-                            <div class="visit">
-                                <a href="/users/<%= photo.owner._id %>">Visit owner</a>
-                                <a class="full-screen getfullScreen" data-url="<%= photo.url %>" data-name="<%= photo.username %>" >Full Screen</a>
-                            </div>
+                            <div class="visit"><a href="/users/<%= photo.owner._id %>">Visit owner</a></div>
                         </div>
                     </div>
                 </div>
@@ -40,37 +37,16 @@
             <h1>Trends for you</h1>
             <div class="top-tags-container">
                 <% for( let tag of tags ) { %>
-                    <a href="/gallery/tags?tag=<%= tag._id.split('#')[1] %>" class="tag-item"><%= tag._id %></a>
+                    <a 
+                        href="/gallery/tags?tag=<%= tag._id.split('#')[1] %>"
+                        class="tag-item <%= ('#'+selectedTag) === tag._id ? 'selected-tag' : '' %>"
+                    >
+                        <%= tag._id %>
+                    </a>
                 <% } %>
             </div>
         </div>
     </main>
-
-    <!-- Photo Modal Start -->
-    <div id="photo-modal" class="modal">
-        <div id="close">X</div>
-        <img id="photoModalImg">
-    </div>
-    <!-- Photo Modal End -->
-
-    <script>
-        let modal = document.getElementById('photo-modal')
-        let closeBtn = document.getElementById('close')
-        let fullScreens = document.querySelectorAll('.getfullScreen')
-        let photoModalImg = document.getElementById('photoModalImg')
-        fullScreens.forEach(function(fullScreen){
-            fullScreen.addEventListener('click',()=>{
-                photoModalImg.setAttribute('src',fullScreen.getAttribute('data-url'))
-                photoModalImg.setAttribute('alt',fullScreen.getAttribute('data-name'))
-                modal.classList.add('active-modal')
-                document.body.style.overflowY = 'hidden'
-            })
-        })
-        closeBtn.addEventListener('click',()=>{
-            modal.classList.remove('active-modal')
-            document.body.style.overflowY = 'auto'
-        })
-    </script>
 
     <script src="/scripts/animate.js"></script>
 </body>

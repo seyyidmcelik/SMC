@@ -1,0 +1,187 @@
+body {
+    position: relative;
+}
+
+header {
+    background-color: #fff;
+}
+
+main {
+    padding: 3%;
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Top 5 tags start */
+.top-tags {
+    width: 200px;
+    height: max-content;
+    position: sticky;
+    top: calc(3% + 68.8px);
+    font-style: italic;
+    background-color: #f7f9f9;
+    color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    box-shadow: 0 0 20px #f7f9f9;
+}
+
+.top-tags a {
+    display: block;
+    padding: 15px;
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.top-tags a:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.top-tags h1 {
+    width: max-content;
+    margin: 0 auto 0 auto;
+    padding: 10px 15px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+    font-size: 25px;
+}
+
+.top-tags .selected-tag {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Top 5 tags end */
+
+.gallery-container {
+    width: 950px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.gallery-item {
+    width: 300px;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-item-info {
+    max-width: 300px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 500px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    color: #fff;
+    font-style: italic;
+    transition: all 1s ease-in-out;
+}
+
+.gallery-item-info .info-title {
+    font-size: 35px;
+    border-bottom: 1px solid #fff;
+}
+
+.gallery-item-info .content {
+    margin: 15px 0;
+}
+
+.gallery-item-info {
+    padding: 25px;
+}
+
+.content,
+.info-title,
+.visit {
+    width: 250px;
+}
+
+.visit a {
+    color: rgb(173, 216, 230);
+    transition: all 0.4s ease-in-out;
+}
+
+.visit .full-screen {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.visit a:hover {
+    text-shadow: 0 0 10px rgb(173, 216, 230);
+}
+
+.gallery-item:hover .gallery-item-info {
+    left: 0;
+}
+
+.gallery-container .gallery-container a {
+    height: 350px;
+}
+
+.gallery-container img {
+    width: 300px;
+    height: 350px;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Tags start */
+
+.tag-container {
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.tag a {
+    display: inline-block;
+    margin-right: 5px;
+    color: rgb(173, 216, 230);
+}
+
+/* Tags end */
+
+/* Photo Modal Start */
+
+.modal {
+    width: 100%;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.active-modal {
+    height: 100%;
+}
+
+#photoModalImg {
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+}
+
+#close {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    font-size: 50px;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* Photo Modal End */

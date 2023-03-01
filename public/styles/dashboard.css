@@ -1,7 +1,15 @@
+body {
+    position: relative;
+}
+
+header {
+    background-color: #fff;
+}
+
 main {
     height: 100vh;
     padding: 3%;
-    padding-top: 150px;
+    padding-top: 100px;
     font-style: italic;
     color: rgba(0, 0, 0, 0.7);
 }
@@ -11,18 +19,64 @@ main .board {
     height: 100%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
 main .info-container {
     width: 60%;
-    height: 100%;
+    height: max-content;
+    border-radius: 5px;
+    padding: 15px 25px;
 }
 
 main .user-info {
     padding-top: 15px;
     line-height: 25px;
+}
+
+main .follow {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 25px;
+}
+
+main .follow .follow-box {
+    width: min(40%, 400px);
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+main .follow .follow-count {
+    margin-left: 10px;
+}
+
+main .photo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 25px;
+}
+
+main .photo .photo-box {
+    width: min(40%, 400px);
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+main .photo .photo-count {
+    margin-left: 10px;
 }
 
 main h1 {
@@ -31,9 +85,599 @@ main h1 {
 }
 
 main .user-image {
-    width: 30%;
-    height: 500px;
-    background: url("https://images.unsplash.com/photo-1581382575275-97901c2635b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80")
-        no-repeat;
+    width: 400px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+main .user-image .screen-or-delete {
+    width: 400px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    transform: scale(0);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.4s ease-in-out;
+}
+
+main .user-image:hover .screen-or-delete {
+    transform: scale(1);
+}
+
+main .user-image .screen-or-delete a {
+    margin: 0 5px;
+    font-size: 20px;
+    color: rgb(173, 216, 230);
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+
+main .user-image .screen-or-delete a:hover {
+    text-shadow: 0 0 10px rgb(173, 216, 230);
+}
+
+main .user-image img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Upload-section start */
+
+#upload-section svg * {
+    fill: #fff;
+    transition: fill 0.4s ease-in;
+}
+
+#upload-section svg:hover * {
+    fill: #000;
+}
+
+#upload-section {
+    height: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(119, 136, 153, 0.7);
+}
+
+#upload-section button {
+    width: max-content;
+    padding: 10px 13px;
+    font-style: italic;
+    border: 1px solid lightblue;
+    border-radius: 5px;
+    background-color: rgb(224 224 224);
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0 50px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.4s ease-in;
+}
+
+#upload-section button:hover {
+    box-shadow: 0 0 20px 5px rgb(224 224 224);
+}
+
+/* Upload-section end */
+
+/* Modal start */
+
+.modal {
+    width: 100%;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+#photo-modal-form form,
+#photo-edit-modal form,
+#profilePhotoModal form {
+    width: 350px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+#photo-modal-form h3,
+#photo-edit-modal h3,
+#profilePhotoModal h3 {
+    position: relative;
+    padding: 5px;
+}
+
+#photo-modal-form span,
+#photo-edit-modal span,
+#profilePhotoModal span {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* Photos start */
+
+section#photos {
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+section#photos h2 {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
+section#photos .photo-container {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    gap: 25px;
+}
+
+section#photos .photo-cell {
+    width: 300px;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+}
+
+section#photos > img {
+    width: 300px;
+    height: 350px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.gallery-item-info {
+    max-width: 300px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 500px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    color: #fff;
+    font-style: italic;
+    transition: all 1s ease-in-out;
+}
+
+.gallery-item-info .info-title {
+    font-size: 35px;
+    border-bottom: 1px solid #fff;
+}
+
+.gallery-item-info .content {
+    margin: 15px 0;
+}
+
+.gallery-item-info {
+    padding: 25px;
+}
+
+.content,
+.info-title,
+.visit {
+    width: 250px;
+}
+
+.visit a {
+    color: rgb(173, 216, 230);
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+
+.visit a:hover {
+    text-shadow: 0 0 10px rgb(173, 216, 230);
+}
+
+.photo-cell:hover .gallery-item-info {
+    left: 0;
+}
+
+.photo-container a {
+    width: max-content;
+}
+
+.photo-container img {
+    width: 300px;
+    height: 350px;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: center;
+}
+
+#photoModalImg {
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+}
+
+#close {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    font-size: 50px;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* Photos end */
+
+/* Modal end */
+
+/* Modal form start */
+
+#photo-modal-form,
+#photo-edit-modal,
+#profilePhotoModal,
+#passwordModal {
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#photo-modal-form h3,
+#photo-edit-modal h3,
+#profilePhotoModal h3 {
+    font-size: 25px;
+}
+
+#photo-modal-form h3::after,
+#photo-edit-modal h3::after,
+#profilePhotoModal h3::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+
+.form-controller {
+    padding-top: 15px;
+}
+
+.form-controller label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.form-controller input {
+    width: 100%;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid black;
+    padding: 7px;
+}
+
+#photo-modal-form input[type="submit"],
+#photo-edit-modal input[type="submit"],
+#profilePhotoModal input[type="submit"],
+#passwordModal button {
+    display: block;
+    margin-top: 25px;
+    margin-left: auto;
+    padding: 7px 14px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 165, 0, 0.3);
+    color: rgba(255, 165, 0, 1);
+    background-color: rgba(255, 165, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    font-style: italic;
+}
+
+#photo-modal-form input[type="submit"]:hover,
+#photo-edit-modal input[type="submit"]:hover {
+    box-shadow: 0 0 10px 0 rgba(255, 165, 0, 0.3);
+}
+
+.fadeIn {
+    opacity: 1;
+    bottom: 0;
+}
+
+.error {
+    font-size: small;
+    color: rgba(255, 0, 0, 1);
+}
+
+/* Modal form end */
+
+/* Tags start */
+
+.tag-container {
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.tag a {
+    display: inline-block;
+    margin-right: 5px;
+    color: rgb(173, 216, 230);
+}
+
+/* Tags end */
+
+/* Delete Photo Modal start */
+
+.delete-modal {
+    width: 100%;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.delete-modal .delete-modal-content {
+    width: 300px;
+    height: 150px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.delete-modal-content div:last-child {
+    margin-top: 10px;
+}
+
+.delete-modal-content div:not(:last-child) {
+    font-size: 25px;
+}
+
+.delete-modal-content button {
+    width: max-content;
+    padding: 7px 10px;
+    right: 0;
+    color: rgba(0, 0, 0, 0.6);
+    font-style: italic;
+    background-color: lightblue;
+    border: 1px solid lightblue;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.4s ease-in;
+}
+
+.delete-modal-content button:hover {
+    box-shadow: 0 0 20px lightblue;
+}
+
+.active-delete-modal {
+    height: 100%;
+}
+
+/* Delete Photo Modal end */
+
+/* Settings Modal Start */
+
+#settingsModal {
+    width: 200px;
+    height: 0;
+    position: fixed;
+    top: calc(3% + 68.8px);
+    right: 80px;
+    font-style: italic;
+    background-color: #f7f9f9;
+    color: rgba(0, 0, 0, 0.7);
     border-radius: 15px;
+    box-shadow: 0 0 20px #f7f9f9;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+    z-index: 4;
+}
+
+.settings-active {
+    height: 202px !important;
+}
+
+#settingsModal .settings-title {
+    width: 90%;
+    margin: 0 auto 0 auto;
+    padding: 10px 15px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+    font-size: 25px;
+}
+
+#settingsModal .settings-items a {
+    display: block;
+    padding: 15px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#settingsModal .settings-items a:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Settings Modal End */
+
+/* Biography Modal Start */
+.biography-modal {
+    width: 100%;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    transition: all 0.5s ease-in-out;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.biography-modal .bio-container,
+.password-container {
+    height: max-content;
+    width: 500px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.password-container {
+    width: 400px;
+}
+
+.biography-modal .bio-content {
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.biography-modal textarea {
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 181px;
+    min-height: 181px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+    outline: none;
+    line-height: 1.5;
+    padding: 10px;
+    font-style: italic;
+}
+
+.biography-modal .bio-title,
+.password-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    font-size: 25px;
+    position: relative;
+}
+
+.biography-modal .bio-title::after,
+.password-title::after {
+    content: "";
+    width: 100%;
+    height: 1.5px;
+    background-color: rgba(0, 0, 0, 1);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+
+.biography-modal .close-bio-modal,
+.password-modal .close-password-modal {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.biography-modal .update-cancel {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Biography Modal End */
+
+/* Toast Modal Start */
+.toast {
+    width: 300px;
+    height: max-content;
+    position: fixed;
+    bottom: 20px;
+    right: -320px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
+    border-radius: 5px;
+    z-index: 6;
+    transition: right 0.5s ease-in-out;
+}
+
+.toast-title-container {
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+.toast-success {
+    background-color: rgb(0, 128, 0);
+    box-shadow: 0px 0px 10px 0px rgba(0, 128, 0, 1);
+    color: #fff;
+}
+
+.toast-danger {
+    background-color: rgb(255, 0, 0);
+    box-shadow: 0px 0px 10px 0px rgba(255, 0, 0, 1);
+    color: #fff;
+}
+
+.toast-info {
+    background-color: rgb(173, 216, 230);
+    box-shadow: 0px 0px 10px 0px rgba(173, 216, 230, 1);
+    color: #fff;
+}
+
+.toast-content-container {
+    padding: 0 10px 10px 10px;
+}
+
+.active-toast {
+    right: 20px;
+}
+
+/* Toast Modal End */
+
+.active-modal {
+    height: 100%;
+}
+
+.active-bio-modal {
+    height: 100%;
+}
+
+.no-photo {
+    width: 100%;
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
 }

@@ -9,16 +9,271 @@
     <%- include('partials/header.ejs') %> 
     <main>
         <div class="board">
+            <div class="user-image" id="userImg">
+                <% if(profilePhoto){ %>
+                    <img src="<%= profilePhoto.url %>" alt="<%= user.username %> profile photo">
+                    <div class="screen-or-delete">
+                        <a id="ppFull" data-url="<%= profilePhoto.url %>" data-name="<%= user.username %>">Full Screen</a>
+                        <a id="ppDelete" data-href="/gallery/<%= profilePhoto._id %>?_method=DELETE">Delete Photo</a>
+                    </div>
+                <% } else { %>
+                    <img src="/images/emptyUser.png" id="ppUpload">
+                <% } %>
+            </div>
             <div class="info-container">
-                <h1><%= user.name %></h1>
+                <h1><%= user.username %></h1>
                 <div class="user-info">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam temporibus labore incidunt quo id, itaque tenetur similique perspiciatis suscipit libero minus quos rem praesentium error est. Aliquid laboriosam doloremque est autem perspiciatis perferendis, animi illo ex, inventore consectetur omnis! Quasi, sequi accusamus velit ducimus maiores veritatis quod expedita molestias, excepturi vel saepe dolore amet necessitatibus possimus, repellendus corrupti nesciunt aspernatur illum? Voluptate praesentium sapiente vel possimus nulla odit, minima, dolore eaque corrupti voluptatem alias eius itaque dolor consequatur, incidunt voluptates sint. Consectetur praesentium nam officia ab! Molestias optio, velit nobis atque, ipsa sapiente repellat quis dolores sed totam possimus impedit officia quia animi esse maxime accusamus laudantium adipisci neque, hic qui deserunt. Modi aperiam repellendus, eos consectetur cupiditate harum architecto nobis veritatis aliquid, eligendi mollitia blanditiis voluptate consequuntur explicabo fuga minima expedita tempore? Nostrum nam illum error excepturi autem, cupiditate sit veritatis a rerum illo ullam corporis dolor quod distinctio.
+                    <p>
+                        <% if (user.description) { %>
+                            <% if(user.description.length > 400) { %>
+                                <%= user.description.substring(0,400)+"..."  %>
+                            <% } else { %>
+                                <%= user.description  %>
+                            <% } %>
+                        <% } else { %>
+                            People wonder you. Tell them something about you. 
+                        <% } %>
+                        <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, corrupti dolor fuga nulla deserunt ut accusamus? Quidem quis in sit? Veritatis, quibusdam? Officiis id nam natus culpa rerum quisquam eius dolor ducimus -->
+                    </p>
+                    <div class="follow">
+                        <div class="follow-box">
+                            Followers <div class="follow-count"><%= user.followers.length %></div>
+                        </div>
+                        <div class="follow-box">
+                            Followings <div class="follow-count"><%= user.followings.length %></div>
+                        </div>
+                    </div>
+                    <div class="photo">
+                        <div class="photo-box">
+                            Photos <div class="photo-count"><%= photos.length %></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="user-image"></div>
         </div>
     </main>
 
-    <script src="/scripts/animate.js"></script>
+    <section id="upload-section">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" zoomAndPan="magnify" viewBox="0 0 37.5 37.499999" height="50" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="8e47db64f9"><path d="M 0.304688 6 L 8 6 L 8 13 L 0.304688 13 Z M 0.304688 6 " clip-rule="nonzero"/></clipPath><clipPath id="077c35bc5b"><path d="M 30 30 L 37.007812 30 L 37.007812 37.007812 L 30 37.007812 Z M 30 30 " clip-rule="nonzero"/></clipPath><clipPath id="ecea19b471"><path d="M 0.304688 30 L 8 30 L 8 37.007812 L 0.304688 37.007812 Z M 0.304688 30 " clip-rule="nonzero"/></clipPath><clipPath id="7f7da7307a"><path d="M 29 0 L 37.007812 0 L 37.007812 8 L 29 8 Z M 29 0 " clip-rule="nonzero"/></clipPath></defs><path fill="#000000" d="M 12.953125 10.617188 L 12.078125 14.140625 L 6.429688 14.140625 C 4.742188 14.140625 3.371094 15.519531 3.371094 17.214844 L 3.371094 30.738281 C 3.371094 32.433594 4.742188 33.8125 6.429688 33.8125 L 30.929688 33.8125 C 32.617188 33.8125 33.988281 32.433594 33.988281 30.738281 L 33.988281 17.214844 C 33.988281 15.519531 32.617188 14.140625 30.929688 14.140625 L 25.28125 14.140625 L 24.40625 10.617188 C 24.199219 9.796875 23.46875 9.222656 22.621094 9.222656 L 14.738281 9.222656 C 13.890625 9.222656 13.160156 9.796875 12.953125 10.617188 Z M 23.21875 10.917969 L 24.210938 14.902344 C 24.277344 15.175781 24.523438 15.367188 24.804688 15.367188 L 30.929688 15.367188 C 31.941406 15.367188 32.765625 16.195312 32.765625 17.214844 L 32.765625 30.738281 C 32.765625 31.753906 31.941406 32.582031 30.929688 32.582031 L 6.429688 32.582031 C 5.417969 32.582031 4.59375 31.753906 4.59375 30.738281 L 4.59375 17.214844 C 4.59375 16.195312 5.417969 15.367188 6.429688 15.367188 L 12.554688 15.367188 C 12.835938 15.367188 13.082031 15.175781 13.148438 14.902344 L 14.140625 10.917969 C 14.210938 10.644531 14.457031 10.449219 14.738281 10.449219 L 22.621094 10.449219 C 22.902344 10.449219 23.148438 10.644531 23.21875 10.917969 Z M 23.21875 10.917969 " fill-opacity="1" fill-rule="nonzero"/><path fill="#000000" d="M 11.332031 23.976562 C 11.332031 28.042969 14.628906 31.351562 18.679688 31.351562 C 22.730469 31.351562 26.027344 28.042969 26.027344 23.976562 C 26.027344 19.90625 22.730469 16.597656 18.679688 16.597656 C 14.628906 16.597656 11.332031 19.90625 11.332031 23.976562 Z M 18.679688 17.828125 C 22.054688 17.828125 24.804688 20.585938 24.804688 23.976562 C 24.804688 27.363281 22.054688 30.121094 18.679688 30.121094 C 15.304688 30.121094 12.554688 27.363281 12.554688 23.976562 C 12.554688 20.585938 15.304688 17.828125 18.679688 17.828125 Z M 18.679688 17.828125 " fill-opacity="1" fill-rule="nonzero"/><path fill="#000000" d="M 18.679688 28.894531 C 21.382812 28.894531 23.578125 26.6875 23.578125 23.976562 C 23.578125 21.265625 21.382812 19.058594 18.679688 19.058594 C 15.976562 19.058594 13.78125 21.265625 13.78125 23.976562 C 13.78125 26.6875 15.976562 28.894531 18.679688 28.894531 Z M 18.679688 20.285156 C 20.707031 20.285156 22.355469 21.941406 22.355469 23.976562 C 22.355469 26.007812 20.707031 27.664062 18.679688 27.664062 C 16.652344 27.664062 15.003906 26.007812 15.003906 23.976562 C 15.003906 21.941406 16.652344 20.285156 18.679688 20.285156 Z M 18.679688 20.285156 " fill-opacity="1" fill-rule="nonzero"/><g clip-path="url(#8e47db64f9)"><path fill="#000000" d="M 1.53125 7.378906 L 7.042969 7.378906 L 7.042969 6.148438 L 0.917969 6.148438 C 0.582031 6.148438 0.308594 6.421875 0.308594 6.761719 L 0.308594 12.910156 L 1.53125 12.910156 Z M 1.53125 7.378906 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#077c35bc5b)"><path fill="#000000" d="M 37.050781 30.738281 L 35.828125 30.738281 L 35.828125 36.269531 L 30.316406 36.269531 L 30.316406 37.5 L 36.441406 37.5 C 36.777344 37.5 37.050781 37.222656 37.050781 36.886719 Z M 37.050781 30.738281 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#ecea19b471)"><path fill="#000000" d="M 0.917969 37.5 L 7.042969 37.5 L 7.042969 36.269531 L 1.53125 36.269531 L 1.53125 30.738281 L 0.308594 30.738281 L 0.308594 36.886719 C 0.308594 37.222656 0.582031 37.5 0.917969 37.5 Z M 0.917969 37.5 " fill-opacity="1" fill-rule="nonzero"/></g><path fill="#000000" d="M 9.492188 16.597656 L 6.429688 16.597656 C 6.09375 16.597656 5.820312 16.875 5.820312 17.214844 L 5.820312 20.285156 C 5.820312 20.625 6.09375 20.902344 6.429688 20.902344 L 9.492188 20.902344 C 9.832031 20.902344 10.105469 20.625 10.105469 20.285156 L 10.105469 17.214844 C 10.105469 16.875 9.832031 16.597656 9.492188 16.597656 Z M 8.882812 19.671875 L 7.042969 19.671875 L 7.042969 17.828125 L 8.882812 17.828125 Z M 8.882812 19.671875 " fill-opacity="1" fill-rule="nonzero"/><g clip-path="url(#7f7da7307a)"><path fill="#000000" d="M 36.441406 3.6875 C 35.089844 3.6875 33.988281 2.585938 33.988281 1.230469 C 33.988281 0.890625 33.714844 0.613281 33.378906 0.613281 C 33.039062 0.613281 32.765625 0.890625 32.765625 1.230469 C 32.765625 2.585938 31.667969 3.6875 30.316406 3.6875 C 29.976562 3.6875 29.703125 3.964844 29.703125 4.304688 C 29.703125 4.644531 29.976562 4.917969 30.316406 4.917969 C 31.667969 4.917969 32.765625 6.019531 32.765625 7.378906 C 32.765625 7.714844 33.039062 7.992188 33.378906 7.992188 C 33.714844 7.992188 33.988281 7.714844 33.988281 7.378906 C 33.988281 6.019531 35.089844 4.917969 36.441406 4.917969 C 36.777344 4.917969 37.050781 4.644531 37.050781 4.304688 C 37.050781 3.964844 36.777344 3.6875 36.441406 3.6875 Z M 33.378906 5.339844 C 33.105469 4.929688 32.753906 4.578125 32.34375 4.304688 C 32.753906 4.03125 33.105469 3.675781 33.378906 3.265625 C 33.648438 3.675781 34 4.03125 34.410156 4.304688 C 34 4.578125 33.648438 4.929688 33.378906 5.339844 Z M 33.378906 5.339844 " fill-opacity="1" fill-rule="nonzero"/></g><path fill="#000000" d="M 24.191406 7.992188 C 24.191406 8.332031 24.464844 8.605469 24.804688 8.605469 C 26.15625 8.605469 27.253906 9.710938 27.253906 11.066406 C 27.253906 11.40625 27.527344 11.679688 27.867188 11.679688 C 28.203125 11.679688 28.476562 11.40625 28.476562 11.066406 C 28.476562 9.710938 29.578125 8.605469 30.929688 8.605469 C 31.265625 8.605469 31.539062 8.332031 31.539062 7.992188 C 31.539062 7.652344 31.265625 7.378906 30.929688 7.378906 C 29.578125 7.378906 28.476562 6.273438 28.476562 4.917969 C 28.476562 4.578125 28.203125 4.304688 27.867188 4.304688 C 27.527344 4.304688 27.253906 4.578125 27.253906 4.917969 C 27.253906 6.273438 26.15625 7.378906 24.804688 7.378906 C 24.464844 7.378906 24.191406 7.652344 24.191406 7.992188 Z M 27.867188 6.953125 C 28.136719 7.367188 28.488281 7.71875 28.898438 7.992188 C 28.488281 8.265625 28.136719 8.617188 27.867188 9.027344 C 27.59375 8.617188 27.242188 8.265625 26.832031 7.992188 C 27.242188 7.71875 27.59375 7.367188 27.867188 6.953125 Z M 27.867188 6.953125 " fill-opacity="1" fill-rule="nonzero"/><path fill="#000000" d="M 25.417969 3.074219 C 24.066406 3.074219 22.964844 1.972656 22.964844 0.613281 C 22.964844 0.277344 22.691406 0 22.355469 0 C 22.015625 0 21.742188 0.277344 21.742188 0.613281 C 21.742188 1.972656 20.644531 3.074219 19.292969 3.074219 C 18.953125 3.074219 18.679688 3.347656 18.679688 3.6875 C 18.679688 4.027344 18.953125 4.304688 19.292969 4.304688 C 20.644531 4.304688 21.742188 5.40625 21.742188 6.761719 C 21.742188 7.101562 22.015625 7.378906 22.355469 7.378906 C 22.691406 7.378906 22.964844 7.101562 22.964844 6.761719 C 22.964844 5.40625 24.066406 4.304688 25.417969 4.304688 C 25.753906 4.304688 26.027344 4.027344 26.027344 3.6875 C 26.027344 3.347656 25.753906 3.074219 25.417969 3.074219 Z M 22.355469 4.726562 C 22.082031 4.316406 21.730469 3.960938 21.320312 3.6875 C 21.730469 3.414062 22.082031 3.0625 22.355469 2.652344 C 22.625 3.0625 22.976562 3.414062 23.386719 3.6875 C 22.976562 3.960938 22.625 4.316406 22.355469 4.726562 Z M 22.355469 4.726562 " fill-opacity="1" fill-rule="nonzero"/></svg>
+        </div>
+        <button id="upload-btn">Upload Photo</button>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" zoomAndPan="magnify" viewBox="0 0 37.5 37.499999" height="50" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="5039b0450b"><path d="M 6 4.664062 L 17 4.664062 L 17 10 L 6 10 Z M 6 4.664062 " clip-rule="nonzero"/></clipPath><clipPath id="59cb79777b"><path d="M 32 10 L 37.007812 10 L 37.007812 23 L 32 23 Z M 32 10 " clip-rule="nonzero"/></clipPath><clipPath id="406ac26a4f"><path d="M 0 4.664062 L 35 4.664062 L 35 33 L 0 33 Z M 0 4.664062 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#5039b0450b)"><path fill="#000000" d="M 9.882812 4.828125 C 9.449219 4.710938 8.984375 4.769531 8.578125 5.003906 C 8.171875 5.238281 7.882812 5.617188 7.765625 6.058594 L 6.925781 9.226562 L 16.519531 6.617188 Z M 9.882812 4.828125 " fill-opacity="1" fill-rule="nonzero"/></g><path fill="#000000" d="M 32.632812 31.625 L 33.933594 26.699219 C 33.789062 26.785156 33.617188 26.84375 33.441406 26.902344 L 32.921875 27.050781 L 21.011719 30.304688 L 30.542969 32.882812 C 30.691406 32.914062 30.835938 32.941406 31.007812 32.941406 C 31.296875 32.941406 31.589844 32.855469 31.878906 32.707031 C 32.226562 32.445312 32.515625 32.0625 32.632812 31.625 Z M 32.632812 31.625 " fill-opacity="1" fill-rule="nonzero"/><g clip-path="url(#59cb79777b)"><path fill="#000000" d="M 37.238281 14.089844 C 37.5 13.152344 36.949219 12.1875 36.023438 11.949219 L 32.195312 10.925781 L 35.152344 22.066406 Z M 37.238281 14.089844 " fill-opacity="1" fill-rule="nonzero"/></g><path fill="#000000" d="M 16.980469 11.980469 C 17.300781 11.890625 17.476562 11.570312 17.386719 11.277344 L 17.242188 10.71875 C 17.15625 10.398438 16.835938 10.222656 16.546875 10.308594 C 16.230469 10.398438 16.054688 10.71875 16.140625 11.011719 C 16.140625 11.011719 16.285156 11.570312 16.285156 11.570312 C 16.34375 11.863281 16.664062 12.039062 16.980469 11.980469 Z M 16.980469 11.980469 " fill-opacity="1" fill-rule="nonzero"/><path fill="#000000" d="M 18.605469 18.167969 C 18.285156 18.253906 18.113281 18.578125 18.199219 18.871094 L 18.34375 19.425781 C 18.402344 19.691406 18.632812 19.867188 18.894531 19.867188 C 19.273438 19.867188 19.5625 19.484375 19.445312 19.132812 L 19.328125 18.605469 C 19.242188 18.285156 18.925781 18.109375 18.605469 18.167969 Z M 18.605469 18.167969 " fill-opacity="1" fill-rule="nonzero"/><path fill="#000000" d="M 21.417969 14.675781 C 21.472656 14.675781 21.503906 14.675781 21.5625 14.648438 L 22.113281 14.5 C 22.429688 14.414062 22.605469 14.089844 22.515625 13.769531 C 22.429688 13.445312 22.113281 13.269531 21.792969 13.359375 L 21.242188 13.503906 C 20.921875 13.59375 20.75 13.914062 20.835938 14.238281 C 20.921875 14.5 21.15625 14.675781 21.417969 14.675781 Z M 21.417969 14.675781 " fill-opacity="1" fill-rule="nonzero"/><path fill="#000000" d="M 14.027344 15.5 L 13.476562 15.644531 C 13.15625 15.734375 12.984375 16.054688 13.070312 16.378906 C 13.128906 16.640625 13.390625 16.816406 13.621094 16.816406 C 13.679688 16.816406 13.707031 16.816406 13.765625 16.789062 L 14.316406 16.640625 C 14.636719 16.554688 14.808594 16.230469 14.722656 15.910156 C 14.664062 15.585938 14.34375 15.410156 14.027344 15.5 Z M 14.027344 15.5 " fill-opacity="1" fill-rule="nonzero"/><path fill="#000000" d="M 20.171875 12.070312 L 20.460938 11.570312 C 20.605469 11.277344 20.519531 10.925781 20.257812 10.777344 C 19.96875 10.632812 19.621094 10.71875 19.472656 10.984375 L 19.183594 11.480469 C 19.039062 11.773438 19.125 12.128906 19.386719 12.273438 C 19.648438 12.449219 20.023438 12.363281 20.171875 12.070312 Z M 20.171875 12.070312 " fill-opacity="1" fill-rule="nonzero"/><path fill="#000000" d="M 15.359375 19.367188 C 15.621094 19.515625 15.996094 19.425781 16.140625 19.164062 L 16.429688 18.664062 C 16.578125 18.371094 16.488281 18.019531 16.230469 17.875 C 15.9375 17.699219 15.589844 17.816406 15.445312 18.078125 L 15.15625 18.578125 C 14.984375 18.871094 15.070312 19.222656 15.359375 19.367188 Z M 15.359375 19.367188 " fill-opacity="1" fill-rule="nonzero"/><path fill="#000000" d="M 20.75 17.492188 L 21.242188 17.785156 C 21.503906 17.933594 21.878906 17.84375 22.023438 17.582031 C 22.199219 17.285156 22.082031 16.933594 21.820312 16.789062 L 21.328125 16.496094 C 21.039062 16.320312 20.691406 16.4375 20.546875 16.699219 C 20.371094 16.964844 20.460938 17.316406 20.75 17.492188 Z M 20.75 17.492188 " fill-opacity="1" fill-rule="nonzero"/><path fill="#000000" d="M 15.070312 13.476562 C 15.242188 13.183594 15.128906 12.832031 14.867188 12.683594 L 14.375 12.390625 C 14.085938 12.214844 13.738281 12.332031 13.589844 12.597656 C 13.417969 12.890625 13.535156 13.242188 13.792969 13.386719 L 14.285156 13.679688 C 14.546875 13.828125 14.894531 13.738281 15.070312 13.476562 Z M 15.070312 13.476562 " fill-opacity="1" fill-rule="nonzero"/><path fill="#000000" d="M 19.734375 14.53125 C 19.445312 13.445312 18.316406 12.800781 17.273438 13.09375 C 16.199219 13.386719 15.5625 14.5 15.851562 15.617188 C 15.996094 16.144531 16.34375 16.582031 16.808594 16.847656 C 17.242188 17.109375 17.792969 17.199219 18.34375 17.050781 C 19.386719 16.757812 20.023438 15.644531 19.734375 14.53125 Z M 19.734375 14.53125 " fill-opacity="1" fill-rule="nonzero"/><g clip-path="url(#406ac26a4f)"><path fill="#000000" d="M 4.867188 31.625 C 5.101562 32.53125 6.085938 33.117188 6.984375 32.855469 C 6.984375 32.855469 29.210938 26.785156 29.210938 26.785156 C 29.210938 26.785156 29.5 26.699219 29.9375 26.582031 C 28.429688 25.523438 26.429688 24.058594 26.082031 23.796875 C 25.851562 23.621094 25.617188 23.445312 25.414062 23.269531 C 25.414062 23.269531 25.300781 23.179688 25.300781 23.179688 C 24.863281 22.828125 24.429688 22.476562 23.9375 22.242188 C 23.414062 21.976562 22.835938 21.832031 22.226562 21.832031 C 21.878906 21.832031 21.503906 21.859375 21.15625 21.890625 C 21.039062 21.890625 20.953125 21.917969 20.835938 21.917969 C 19.503906 22.035156 17.878906 22.152344 16.894531 21.890625 C 15.910156 21.625 15.15625 21.039062 14.546875 20.542969 C 13.882812 20.011719 13.242188 19.632812 12.375 19.835938 C 11.707031 20.011719 11.128906 20.425781 10.605469 20.863281 C 9.707031 21.625 8.984375 22.5625 8.257812 23.472656 C 7.535156 24.410156 6.636719 25.230469 5.96875 26.230469 C 5.679688 26.640625 5.332031 27.195312 5.011719 27.664062 L 1.390625 13.796875 C 1.304688 13.476562 1.476562 13.152344 1.796875 13.09375 C 1.796875 13.09375 27.878906 6 27.90625 5.96875 C 28.199219 5.882812 28.515625 6.085938 28.601562 6.378906 L 31.355469 16.816406 C 31.296875 16.789062 31.242188 16.757812 31.183594 16.757812 C 30.632812 16.523438 30.023438 16.4375 29.472656 16.261719 C 29.007812 16.113281 28.515625 15.96875 28.023438 15.910156 C 27.675781 15.878906 26.777344 15.761719 26.3125 16.378906 C 25.996094 16.789062 25.851562 17.34375 25.472656 17.699219 C 24.921875 18.253906 24.109375 18.488281 23.414062 18.8125 C 22.605469 19.191406 22.371094 19.71875 22.082031 20.277344 C 21.996094 20.425781 21.9375 20.570312 21.851562 20.71875 C 21.878906 20.71875 21.910156 20.71875 21.9375 20.71875 C 23.9375 20.601562 25.066406 21.507812 26.082031 22.300781 L 26.199219 22.386719 C 26.402344 22.5625 26.605469 22.710938 26.835938 22.886719 C 27.328125 23.269531 30.140625 25.289062 31.472656 26.230469 C 32.339844 25.996094 33.152344 25.757812 33.152344 25.757812 C 34.082031 25.496094 34.632812 24.558594 34.371094 23.621094 L 29.761719 6.117188 C 29.644531 5.675781 29.355469 5.296875 28.949219 5.0625 C 28.546875 4.828125 28.082031 4.769531 27.648438 4.886719 L 1.476562 11.949219 C 0.550781 12.214844 0 13.152344 0.261719 14.089844 C 0.261719 14.089844 4.867188 31.59375 4.867188 31.625 Z M 4.867188 31.625 " fill-opacity="1" fill-rule="nonzero"/></g></svg>
+        </div>
+    </section>
+    
+    <!-- Photos start -->
+    <section id="photos" style="padding: 3%;">
+        <h2>Your Gallery</h2>
+        <div class="photo-container">
+            <% if(photos.length == 0) { %>
+                <div class="no-photo">Gallery is emtpy</div>
+            <% }else { %>
+                <% for(let photo of photos) { %> 
+                    <div class="photo-cell">
+                        <img src="<%= photo.url %>" alt="<%= user.username %>">
+                        <div class="gallery-item-info">
+                            <div class="info-container">
+                                <div class="info-title"><%= photo.owner.username %></div>
+                                <div class="content">
+                                    <% if(photo.description && photo.description.length > 250) { %> 
+                                        <%= photo.description.substring(0,250)+"..." %>
+                                    <% }else { %>
+                                        <%= photo.description %>
+                                    <% } %>
+                                </div>
+                                <div class="tag-container">
+                                    <% for(let tag of photo.tags) { %>
+                                        <div class="tag"><a href="/gallery/tags?tag=<%= tag.split('#')[1] %>"><%= tag %></a></div>
+                                    <% } %>
+                                </div>
+                                <div class="visit">
+                                    <a class="full-screen getfullScreen" data-url="<%= photo.url %>" data-name="<%= user.username %>" >Full Screen</a>
+                                    <a 
+                                        class="edit"
+                                        data-edit-photo-id = "<%= photo._id %>"
+                                        data-edit-photo-owner-id = "<%= photo.owner._id %>"
+                                        data-edit-description="<%= photo.description %>"
+                                        data-edit-tags="<%= photo.tags.toString().replaceAll(',',' ') %>"
+                                    >Edit</a>
+                                    <a class="full-screen delete-photo" data-href="/gallery/<%= photo._id %>?_method=DELETE" >Delete Photo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    </section>
+    <!-- Photos end -->
+    
+    <!-- Photo Fullsize Modal Start -->
+    <div id="photo-modal" class="modal">
+        <div id="close">X</div>
+        <img id="photoModalImg">
+    </div>
+    <!-- Photo Fullsize Modal End -->
+    
+    <!-- Photo Delete Modal Start -->
+    <div id="photo-delete-modal" class="delete-modal">
+        <div class="delete-modal-content">
+            <div>The photo will be deleted</div>
+            <div>Are you sure?</div>
+            <div>
+                <button id="delete-btn">Delete</button>
+                <button id="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <!-- Photo Delete Modal End -->
+
+    <!-- Photo File Upload Modal Start -->
+    <div id="photo-modal-form" class="modal">
+        <form action="/gallery" method="POST" autocomplete="off" enctype="multipart/form-data" >
+            <h3 class="title">Upload Photo <span id="close-form">X</span></h3>
+            <div class="form-controller ">
+                <label for="description">Description</label>
+                <input type="text" name="description" placeholder="Type your description" />
+                <div id="description" class="error"></div>
+            </div>
+            <div class="form-controller ">
+                <label for="tag">Tags</label>
+                <input type="text" name="tag" id="tag" placeholder="#Type #your #tags" />
+                <div id="tags"></div>
+                <div id="err"></div>
+                <div id="tagsError" class="error"></div>
+            </div>
+            <div class="form-controller ">
+                <label for="image">File</label>
+                <input type="file" name="image" placeholder="Select your file" />
+                <img id="photoPreview" style="display: none;" src="" alt="photo preview" />
+                <div id="image" class="error"></div>
+            </div>
+            <input type="submit" />
+        </form>
+    </div>
+    <!-- Photo File Upload Modal End -->
+
+    <!-- Photo Edit Modal Start -->
+    <div id="photo-edit-modal" class="modal">
+        <form action="/gallery/edit" id="editForm" method="POST" autocomplete="off" >
+            <h3 class="title">Edit Photo <span id="close-edit">X</span></h3>
+            <input type="hidden" id="editId" name="editId">
+            <div class="form-controller ">
+                <label for="description">Description</label>
+                <input type="text" id="editDesc" name="editDescription" placeholder="Type your description" />
+                <div id="description" class="error"></div>
+            </div>
+            <div class="form-controller ">
+                <label for="tag">Tags</label>
+                <input type="text" id="editTags" name="editTags" id="tag" placeholder="#Type #your #tags" />
+                <div id="tags"></div>
+                <div id="err"></div>
+                <div id="tagsError" class="error"></div>
+            </div>
+            <input type="submit" />
+        </form>
+    </div>
+    <!-- Photo Edit Modal End -->
+
+    <!-- Profile Photo Upload Modal Start -->
+    <div id="profilePhotoModal" class="modal">
+        <form action="/gallery/pp" method="POST" autocomplete="off" enctype="multipart/form-data" >
+            <h3 class="title">Upload Profile Photo <span id="profilePhotoClose">X</span></h3>
+            <div class="form-controller ">
+                <label for="image">File</label>
+                <input type="file" name="image" placeholder="Select your file" id="pp" />
+                <img id="ppPreview" style="display: none;" src="" alt="photo preview" />
+                <div id="image" class="error"></div>
+            </div>
+            <input type="submit" />
+        </form>
+    </div>
+    <!-- Profile Photo Upload Modal End -->
+
+    <!-- Settings Modal Start -->
+    <div id="settingsModal">
+        <div class="settings-title">Settings</div>
+        <div class="settings-items">
+            <a>Biography</a>
+            <a>Change Password</a>
+            <a>Delete Account</a>
+        </div>
+    </div>
+    <!-- Settings Modal End -->
+
+    <!-- Biography Modal Start -->
+    <div id="biographyModal" class="biography-modal modal">
+        <form action="dashboard/desc" method="POST">
+            <div class="bio-container">
+                <div class="bio-title">
+                    Biography
+                    <span class="close-bio-modal">X</span>
+                </div>
+                <div class="bio-content">
+                    <textarea name="description" id="" cols="60" rows="8" placeholder="Type your biography"><% if (user.description) { %><% if(user.description.length > 400) { %><%= user.description.substring(0,400)+"..."  %><% } else { %><%= user.description  %><% } %><% } else { %>People wonder you. Tell them something about you.<% } %></textarea>
+                </div>
+                <div class="update-cancel">
+                    <button type="submit">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Biography Modal End -->
+
+    <!-- Password Modal Start -->
+    <div id="passwordModal" class="password-modal modal">
+        <form action="/users/dashboard/pass" method="POST">
+            <div class="password-container">
+                <div class="password-title">
+                    Change Password
+                    <span class="close-password-modal">X</span>
+                </div>
+                <div class="password-content">
+                    <div class="form-controller ">
+                        <label for="currentpass">Current Password</label>
+                        <input type="password" name="currentpass" placeholder="Type your current password" autocomplete="off" />
+                        <div id="currentpass" class="error"></div>
+                    </div>
+                    <div class="form-controller ">
+                        <label for="newpass">New Password</label>
+                        <input type="password" name="newpass" placeholder="Type your new password" autocomplete="off" />
+                        <div id="newpass" class="error"></div>
+                    </div>
+                </div>
+                <div class="update-cancel">
+                    <button type="submit">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Password Modal End -->
+
+    <!-- Account Delete Modal Start -->
+    <div id="account-delete-modal" class="delete-modal">
+        <div class="delete-modal-content">
+            <div>The Account will be deleted</div>
+            <div>Are you sure?</div>
+            <div>
+                <button id="delete-account-btn">Delete</button>
+                <button id="cancel-account-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <!-- Account Delete Modal End -->
+    
+    <!-- Toast Modal Start -->
+    <div id="toast" class="toast">
+        <div class="toast-title-container">
+            <div class="title">SMC</div>
+        </div>
+        <div class="toast-content-container">
+            Lorem ipsum dolor sit amet.
+        </div>
+    </div>
+    <!-- Toast Modal End -->
+
+    <script src="/scripts/dashboard.js"></script>
 </body>
 </html>

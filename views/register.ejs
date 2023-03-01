@@ -13,14 +13,9 @@
             <form action="users/register" method="post" autocomplete="off">
                 <h1 class="title">Create Account</h1>
                 <div class="form-controller title">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" placeholder="Type your name" />
+                    <label for="name">Username</label>
+                    <input type="text" name="name" placeholder="Type your username" />
                     <div id="name" class="error"></div>
-                </div>
-                <div class="form-controller title">
-                    <label for="fname">Surname</label>
-                    <input type="text" name="surname" placeholder="Type your surname" />
-                    <div id="surname" class="error"></div>
                 </div>
                 <div class="form-controller title">
                     <label for="email">Email</label>
@@ -40,7 +35,6 @@
     <script>
         const form = document.querySelector('form')
         const nameError = document.querySelector('#name')
-        const surnameError = document.querySelector('#surname')
         const emailError = document.querySelector('#email')
         const passwordError = document.querySelector('#password')
         
@@ -50,21 +44,18 @@
            emailError.textContent = "";
            passwordError.textContent = "";
            nameError.textContent = "";
-           surnameError.textContent = "";
 
            emailError.style.display = "none"
            passwordError.style.display = "none"
            nameError.style.display = "none"
-           surnameError.style.display = "none"
 
            const email = form.email.value
            const password = form.password.value
-           const name = form.name.value
-           const surname = form.surname.value
+           const username = form.name.value
            try {
               const res = await fetch('users/register', {
                  method: "POST",
-                 body: JSON.stringify({ name, surname, email, password }),
+                 body: JSON.stringify({ username, email, password }),
                  headers: { "Content-Type": "application/json" }
               })
               const data = await res.json();
@@ -77,13 +68,9 @@
                     passwordError.textContent = data.password
                     passwordError.style.display = "block"
                  }
-                 if (data.name) {
-                    nameError.textContent = data.name
+                 if (data.username) {
+                    nameError.textContent = data.username
                     nameError.style.display = "block"
-                 }
-                 if (data.surname) {
-                    surnameError.textContent = data.surname
-                    surnameError.style.display = "block"
                  }
               }
               if(data.user){

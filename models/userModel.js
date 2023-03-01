@@ -5,13 +5,12 @@ import validator from "validator";
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    name: {
+    username: {
         type: String,
         required: [true, "Name is required"]
     },
-    surname: {
-        type: String,
-        required: [true, "Surname is required"]
+    description: {
+        type: String
     },
     email: {
         type: String,
@@ -22,7 +21,19 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: [true, "Password is required"]
-    }
+    },
+    followers: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
+    followings: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 }, {
     timestamps: true,
 })

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %> 
+    <!-- If you would like to add new css link -->
+    <link rel="stylesheet" href="/styles/user.css">
+</head>
+<body>
+    <%- include('partials/header.ejs') %> 
+    <main>
+        <div class="board">
+            <div class="user-image">
+                <% if(profilePhoto){ %>
+                    <img src="<%= profilePhoto.url %>" alt="<%= selectedUser.username %> profile photo">
+                <% } else { %>
+                    <img src="/images/emptyUser.png">
+                <% } %>
+            </div>
+            <div class="info-container">
+                <div class="info-user-title">
+                    <h1>
+                        <%= selectedUser.username %>                    
+                    </h1>
+                    <% if(!inFollowers) { %>
+                        <a href="/users/<%= selectedUser._id %>/follow?_method=PUT">Follow</a>   
+                    <% }else { %>
+                        <a href="/users/<%= selectedUser._id %>/unfollow?_method=PUT">Unfollow</a>   
+                    <% } %>
+                </div>
+                <div class="user-info">
+                    <p>
+                        <% if (selectedUser.description) { %>
+                            <% if(selectedUser.description.length > 400) { %>
+                                <%= selectedUser.description.substring(0,400)+"..."  %>
+                            <% } else { %>
+                                <%= selectedUser.description  %>
+                            <% } %>
+                        <% } else { %>
+                            People wonder you. Tell them something about you.
+                        <% } %>
+                        <!-- max 75 characters -->
+                    </p>
+                    <div class="follow">
+                        <div class="follow-box">
+                            Followers <div class="follow-count"><%= selectedUser.followers.length %></div>
+                        </div>
+                        <div class="follow-box">
+                            Followings <div class="follow-count"><%= selectedUser.followings.length %></div>
+                        </div>
+                    </div>
+                    <div class="photo">
+                        <div class="photo-box">
+                            Photos <div class="photo-count"><%= photos.length %></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    
+    <!-- Photos start -->
+
+    <section id="photos" style="padding: 3%;">
+        <h2>Gallery</h2>
+        <div class="photo-container">
+            <% for(let photo of photos) { %> 
+                <div class="photo-cell">
+                    <img src="<%= photo.url %>" alt="<%= selectedUser.username %>">
+                    <div class="gallery-item-info">
+                        <div class="info-container">
+                            <div class="info-title"><%= selectedUser.username %></div>
+                            <div class="content">
+                                <% if( photo.description && photo.description.length > 250) { %> 
+                                    <%= photo.description.substring(0,250)+"..." %>
+                                <% }else { %>
+                                    <%= photo.description %>
+                                <% } %>
+                            </div>
+                            <div class="tag-container">
+                                <% for(let tag of photo.tags) { %>
+                                    <div class="tag"><a href="/gallery/tags?tag=<%= tag.split('#')[1] %>"><%= tag %></a></div>
+                                <% } %>
+                            </div>
+                            <div class="visit">
+                                <a class="full-screen getfullScreen" data-url="<%= photo.url %>" data-name="<%= selectedUser.username %>" >Full Screen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %> 
+        </div>
+    </section>
+
+    <!-- Photo Modal Start -->
+    <div id="photo-modal" class="modal">
+        <div id="close">X</div>
+        <img id="photoModalImg">
+    </div>
+    <!-- Photo Modal End -->
+
+
+
+    <script src="/scripts/user.js"></script>
+</body>
+</html>

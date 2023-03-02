@@ -11,9 +11,10 @@ const createPhoto = async (req, res) => {
         }
     )
     try {
+        const { description, tag } = req.body
         await Photo.create({
-            description: req.body.description.trim(),
-            tags: req.body.tag.split(' '),
+            description: description.trim(),
+            tags: tag.split(' '),
             owner: res.locals.user._id,
             url: result.secure_url,
             image_id: result.public_id,

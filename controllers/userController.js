@@ -8,12 +8,13 @@ import emailTemplate from '../util/emailTemplate.js'
 
 const createUser = async (req, res) => {
     try {
+        const { username, email, password } = req.body
         const user = await User.create(
             {
-                username: req.body.username,
+                username: username,
                 description: '',
-                email: req.body.email,
-                password: req.body.password
+                email: email,
+                password: password
             }
         )
         res.status(201).json({ user })
@@ -233,7 +234,7 @@ const resetPasswordWithEmail = async (req, res) => {
             from: process.env.NODE_MAIL,
             to: email,
             subject: "Password Reset",
-            html: emailTemplate({ brand: 'SMC', username: user.username, passUrl: process.env.RESET_URL, id: user._id }),
+            html: emailTemplate({ brand: 'SMC', username: user.username, passUrl: process.env.BASE_URL, id: user._id }),
         });
 
         res.status(200).json({ success: true, message: 'Check your email to reset password' })

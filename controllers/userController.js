@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import Photo from "../models/photoModel.js"
 import { v2 as cloudinary } from 'cloudinary';
+import nodemailer from 'nodemailer'
+import emailTemplate from '../util/emailTemplate.js'
 
 const createUser = async (req, res) => {
     try {
@@ -209,14 +211,53 @@ const deleteAccount = async (req, res) => {
     }
 }
 
-const resetPassword = async (req, res) => {
+const resetPasswordWithEmail = async (req, res) => {
     let { email } = req.body
 
-    const user = await User.find({ email })
+    const user = await User.findOne({ email })
 
-    if (!user.length) return res.status(403).json({ success: false, message: 'There is no such user' })
+    if (!user) return res.status(403).json({ success: false, message: 'There is no such user' })
 
-    res.status(200).json({ success: true, message: 'Check your email to reset password' })
+    try {
+        let transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            auth: {
+                user: process.env.NODE_MAIL,
+                pass: process.env.NODE_PASS,
+            },
+        });
+
+        await transporter.sendMail({
+            from: process.env.NODE_MAIL,
+            to: email,
+            subject: "Password Reset",
+            html: emailTemplate({ brand: 'SMC', username: user.username, passUrl: process.env.RESET_URL, id: user._id }),
+        });
+
+        res.status(200).json({ success: true, message: 'Check your email to reset password' })
+    } catch (error) {
+        res.status(500).json({ error })
+    }
+}
+
+const getResetPassword = (req, res) => {
+    res.render('resetpassword', {
+        link: 'resetpassword'
+    })
+}
+
+const postResetPassword = async (req, res) => {
+    const { _id, newpass } = req.body
+    try {
+        const user = await User.findById({ _id })
+        user.password = newpass
+        await user.save()
+        res.status(200).json({ success: true, message: 'Password has reset' })
+    } catch (error) {
+        res.status(400).json({ error })
+    }
 }
 
 const createToken = (userId) => {
@@ -234,5 +275,7 @@ export {
     updateDescription,
     updatePassword,
     deleteAccount,
-    resetPassword
+    getResetPassword,
+    resetPasswordWithEmail,
+    postResetPassword
 }

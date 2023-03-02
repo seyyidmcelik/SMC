@@ -57,17 +57,17 @@ closePass.addEventListener('click', () => {
 })
 /* Rest Password Modal End */
 
-/* Reset Passwort Fetch Start */
-let resetPassform = document.getElementById('editForm')
+/* Reset Passwort Mail Fetch Start */
+let resetPassformMail = document.getElementById('editForm')
 let forgottenEmail = document.getElementById('emailforpass')
 let errorDiv = document.querySelector('#editForm .error')
 let toast = document.getElementById('toast')
 let toastContent = document.querySelector('.toast-content-container')
 let submitBtn = document.getElementById('resetSubmitBtn')
-resetPassform.onsubmit = async function (e) {
+resetPassformMail.onsubmit = async function (e) {
     e.preventDefault();
     try {
-        let res = await fetch('users/resetpassword', {
+        let res = await fetch('users/resetpasswordemail', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -107,4 +107,4 @@ resetPassform.onsubmit = async function (e) {
     }
 }
 
-/* Reset Passwort Fetch End */
+/* Reset Password Mail Fetch End */

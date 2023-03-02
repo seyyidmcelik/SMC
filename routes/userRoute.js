@@ -14,7 +14,9 @@ router.route('/:id/follow').put(auth.authenticateToken, userController.follow)
 router.route('/:id/unfollow').put(auth.authenticateToken, userController.unfollow)
 router.route('/register').post(userController.createUser)
 router.route('/login').post(userController.loginUser)
-router.route('/resetpassword').post(userController.resetPassword)
+router.route('/resetpassword/:id').get(userController.getResetPassword)
+router.route('/resetpassword').post(userController.postResetPassword)
+router.route('/resetpasswordemail').post(userController.resetPasswordWithEmail)
 
 
 export default router

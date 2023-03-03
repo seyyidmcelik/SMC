@@ -92,3 +92,49 @@ nav svg {
     opacity: 1;
     bottom: 0;
 }
+
+@media screen and (min-width: 1920px) {
+}
+
+@media screen and (max-width: 1680px) {
+}
+
+@media screen and (max-width: 1600px) {
+}
+
+@media screen and (max-width: 1536px) {
+}
+
+@media screen and (max-width: 1440px) {
+}
+
+@media screen and (max-width: 1366px) {
+}
+
+@media screen and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 600px) {
+    header {
+        padding: 10px 15px;
+    }
+    header ul {
+        margin-bottom: -2px;
+        line-height: 24px;
+    }
+    nav a {
+        padding: 7px 10px;
+    }
+    nav li:last-child a {
+        display: flex;
+    }
+    nav svg {
+        margin: 0 8px;
+    }
+}

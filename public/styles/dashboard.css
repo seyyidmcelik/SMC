@@ -618,6 +618,23 @@ section#photos > img {
     justify-content: flex-end;
 }
 
+.biography-modal .update-cancel button {
+    display: block;
+    margin-left: auto;
+    padding: 7px 14px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 165, 0, 0.3);
+    color: rgba(255, 165, 0, 1);
+    background-color: rgba(255, 165, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    font-style: italic;
+}
+
+.biography-modal .update-cancel button:hover {
+    box-shadow: 0 0 10px 0 rgba(255, 165, 0, 0.3);
+}
+
 /* Biography Modal End */
 
 /* Toast Modal Start */
@@ -680,4 +697,121 @@ section#photos > img {
     font-size: 50px;
     text-align: center;
     font-weight: bold;
+}
+
+@media screen and (min-width: 1920px) {
+    main .info-container {
+        max-width: 850px;
+    }
+}
+
+@media screen and (max-width: 1680px) {
+}
+
+@media screen and (max-width: 1600px) {
+}
+
+@media screen and (max-width: 1536px) {
+}
+
+@media screen and (max-width: 1440px) {
+}
+
+@media screen and (max-width: 1366px) {
+}
+
+@media screen and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 1024px) {
+    main .board {
+        flex-direction: column;
+    }
+    main .info-container {
+        width: 100%;
+    }
+    main .user-image {
+        width: 350px;
+        height: 350px;
+    }
+    main .user-image img {
+        width: 350px;
+        height: 350px;
+    }
+    main .user-image .screen-or-delete {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #settingsModal {
+        right: 40px;
+    }
+    main .board {
+        flex-direction: column;
+    }
+    main .info-container {
+        width: 100%;
+    }
+    main .user-image {
+        width: 270px;
+        height: 270px;
+        margin-bottom: 20px;
+    }
+    main .user-image img {
+        width: 270px;
+        height: 270px;
+    }
+    main .user-image .screen-or-delete {
+        width: 270px;
+        height: 270px;
+    }
+    main .follow {
+        padding: 15px 0;
+    }
+    main .follow .follow-box {
+        width: auto;
+        min-width: 110px;
+        padding: 10px;
+        font-size: 16px;
+    }
+    main .follow .follow-count {
+        margin-left: 7px;
+    }
+    main .photo {
+        padding: 15px 0;
+    }
+    main .photo .photo-box {
+        width: auto;
+        min-width: 110px;
+        padding: 10px;
+        font-size: 16px;
+    }
+    main .photo .photo-count {
+        margin-left: 7px;
+    }
+    #photos {
+        margin-top: 50px;
+    }
+    #photos .photo-container {
+        justify-content: center;
+    }
+    .biography-modal form {
+        width: 90%;
+    }
+    .biography-modal .bio-container {
+        width: 100%;
+    }
+    .password-modal form {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .password-modal .password-container {
+        width: 90%;
+    }
+    .delete-modal {
+        width: 300px;
+    }
 }

@@ -15,7 +15,7 @@ main {
 
 /* Top 5 tags start */
 .top-tags {
-    width: 200px;
+    width: 250px;
     height: max-content;
     position: sticky;
     top: calc(3% + 68.8px);
@@ -51,10 +51,14 @@ main {
     background-color: rgba(0, 0, 0, 0.03);
 }
 
+.top-tags .arrow {
+    display: none;
+}
+
 /* Top 5 tags end */
 
 .gallery-container {
-    width: 950px;
+    width: 90%; /* 950px 1440x900 size */
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -185,3 +189,90 @@ main {
 }
 
 /* Photo Modal End */
+
+@media screen and (min-width: 1920px) {
+}
+
+@media screen and (max-width: 1680px) {
+}
+
+@media screen and (max-width: 1600px) {
+}
+
+@media screen and (max-width: 1536px) {
+    .top-tags {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+}
+
+@media screen and (max-width: 1366px) {
+}
+
+@media screen and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 1024px) {
+    .top-tags {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        height: 100vh;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .gallery-container {
+        height: calc(100vh - 70px);
+        overflow-y: auto;
+        justify-content: center;
+    }
+    .gallery-container img {
+        width: 300px;
+        height: 350px;
+    }
+    .gallery-item {
+        width: 300px;
+        height: 350px;
+    }
+    .top-tags {
+        /* width: 225px; */
+        width: 100%;
+        height: 50px;
+        overflow: hidden;
+        position: relative;
+        top: -20px;
+        transition: all 0.4s ease-in-out;
+    }
+    .top-tags:hover {
+        height: 525px;
+    }
+    .top-tags .arrow {
+        display: block;
+        position: absolute;
+        top: 7px;
+        right: 20px;
+        font-size: 30px;
+        transition: all 0.4s ease-in-out;
+        transform: rotate(270deg);
+    }
+    .top-tags:hover .arrow {
+        transform: rotate(360deg);
+    }
+    .top-tags h1 {
+        width: auto;
+    }
+
+    #close {
+        right: 10px;
+        top: 10px;
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+}

@@ -129,7 +129,7 @@ nav svg {
         line-height: 24px;
     }
     nav a {
-        padding: 7px 10px;
+        padding: 5px;
     }
     nav li:last-child a {
         display: flex;

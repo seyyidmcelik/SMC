@@ -7,7 +7,7 @@ header {
 }
 
 main {
-    height: max-content;
+    height: 100vh;
     padding: 3%;
     padding-top: 100px;
     font-style: italic;

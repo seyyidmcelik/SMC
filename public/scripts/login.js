@@ -75,6 +75,7 @@ resetPassformMail.onsubmit = async function (e) {
             })
         })
         let result = await res.json();
+        console.log(result)
         if (!result.success) {
             submitBtn.setAttribute('disabled', 'true')
             errorDiv.innerText = result.message

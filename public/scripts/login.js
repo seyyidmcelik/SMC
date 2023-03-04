@@ -1,9 +1,9 @@
 /* Login Authentication Start */
-const form = document.querySelector('form')
+const loginform = document.getElementById('loginform')
 const emailError = document.querySelector('#emailError')
 const passwordError = document.querySelector('#password')
 
-form.addEventListener("submit", async (e) => {
+loginform.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     emailError.textContent = "";
@@ -12,8 +12,8 @@ form.addEventListener("submit", async (e) => {
     emailError.style.display = "none"
     passwordError.style.display = "none"
 
-    const email = form.email.value
-    const password = form.password.value
+    const email = loginform.email.value
+    const password = loginform.password.value
     try {
         const res = await fetch('users/login', {
             method: "POST",

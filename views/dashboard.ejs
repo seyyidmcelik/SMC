@@ -95,7 +95,7 @@
                                         data-edit-photo-id = "<%= photo._id %>"
                                         data-edit-photo-owner-id = "<%= photo.owner._id %>"
                                         data-edit-description="<%= photo.description %>"
-                                        data-edit-tags="<%= photo.tags.toString().replaceAll(',',' ') %>"
+                                        data-edit-tags="<%= photo.tags %>"
                                     >Edit</a>
                                     <a class="full-screen delete-photo" data-href="/gallery/<%= photo._id %>?_method=DELETE" >Delete Photo</a>
                                 </div>

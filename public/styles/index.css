@@ -60,6 +60,10 @@ main .text {
     bottom: 0;
 }
 
+#loggout svg * {
+    fill: #fff;
+}
+
 @media screen and (min-width: 1920px) {
 }
 

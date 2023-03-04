@@ -745,6 +745,9 @@ section#photos > img {
 }
 
 @media screen and (max-width: 600px) {
+    main {
+        height: max-content;
+    }
     #settingsModal {
         right: 40px;
     }

@@ -225,6 +225,7 @@ main {
         height: 100vh;
         flex-direction: column-reverse;
         align-items: center;
+        padding-bottom: 20px;
     }
     .gallery-container {
         height: calc(100vh - 70px);
@@ -261,7 +262,7 @@ main {
         transform: rotate(360deg) !important;
     }
     .mobile-tags {
-        height: 525px;
+        height: 100%;
     }
     .top-tags h1 {
         width: auto;

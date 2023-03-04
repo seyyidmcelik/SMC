@@ -217,6 +217,7 @@ main .user-image img {
 /* Photos start */
 
 section#photos {
+    padding: 3%;
     font-style: italic;
     color: rgba(0, 0, 0, 0.7);
 }
@@ -794,8 +795,9 @@ section#photos > img {
     main .photo .photo-count {
         margin-left: 7px;
     }
-    #photos {
+    section#photos {
         margin-top: 50px;
+        padding-bottom: 20px;
     }
     #photos .photo-container {
         justify-content: center;

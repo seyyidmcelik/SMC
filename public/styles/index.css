@@ -97,5 +97,6 @@ main .text {
     }
     .text h2 {
         font-size: 25px;
+        padding-top: 2px;
     }
 }

@@ -4,6 +4,10 @@ main .user-image img {
     cursor: auto;
 }
 
+#photos {
+    padding: 3%;
+}
+
 .info-user-title {
     display: flex;
     align-items: center;

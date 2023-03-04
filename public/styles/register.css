@@ -132,6 +132,7 @@ main input[type="submit"]:hover {
 @media screen and (max-width: 768px) {
     main {
         flex-direction: column;
+        padding-bottom: 20px;
     }
     main .login-img {
         width: 100%;

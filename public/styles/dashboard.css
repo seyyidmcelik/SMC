@@ -797,7 +797,7 @@ section#photos > img {
     }
     section#photos {
         margin-top: 50px;
-        padding-bottom: 20px;
+        margin-bottom: 20px;
     }
     #photos .photo-container {
         justify-content: center;

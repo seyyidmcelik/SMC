@@ -119,7 +119,7 @@ editLinks.forEach((edit) => {
     edit.addEventListener('click', () => {
         editId.setAttribute('value', edit.getAttribute('data-edit-photo-id'))
         editDesc.setAttribute('value', edit.getAttribute('data-edit-description'))
-        editTags.setAttribute('value', edit.getAttribute('data-edit-tags'))
+        editTags.setAttribute('value', edit.getAttribute('data-edit-tags').toString().replaceAll(',',' '))
         photoEditModal.classList.add('active-modal')
         document.body.style.overflowY = 'hidden'
     })

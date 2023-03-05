@@ -175,15 +175,15 @@ main {
 
 #photoModalImg {
     width: 90%;
-    height: auto;
+    height: 80%;
     object-fit: contain;
 }
 
 #close {
     position: absolute;
-    right: 50px;
-    top: 50px;
-    font-size: 50px;
+    right: 10px;
+    top: 10px;
+    font-size: 30px;
     cursor: pointer;
     color: #fff;
 }

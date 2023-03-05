@@ -312,7 +312,7 @@ section#photos > img {
 
 #photoModalImg {
     width: 90%;
-    height: auto;
+    height: 80%;
     object-fit: contain;
 }
 
@@ -732,16 +732,16 @@ section#photos > img {
         width: 100%;
     }
     main .user-image {
-        width: 350px;
-        height: 350px;
+        width: 270px;
+        height: 270px;
     }
     main .user-image img {
-        width: 350px;
-        height: 350px;
+        width: 270px;
+        height: 270px;
     }
     main .user-image .screen-or-delete {
-        width: 350px;
-        height: 350px;
+        width: 270px;
+        height: 270px;
     }
 }
 

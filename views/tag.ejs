@@ -27,7 +27,10 @@
                                     <div class="tag"><a href="/gallery/tags?tag=<%= tag.split('#')[1] %>"><%= tag %></a></div>
                                 <% } %>
                             </div>
-                            <div class="visit"><a href="/users/<%= photo.owner._id %>">Visit owner</a></div>
+                            <div class="visit">
+                                <a href="/users/<%= photo.owner._id %>">Visit owner</a>
+                                <a class="full-screen getfullScreen" data-url="<%= photo.url %>" data-name="<%= photo.owner.username %>" >Full Screen</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -48,6 +51,14 @@
             <div class="arrow">&#x2193;</div>
         </div>
     </main>
+
+    <!-- Photo Modal Start -->
+    <div id="photo-modal" class="modal">
+        <div id="close">X</div>
+        <img id="photoModalImg">
+    </div>
+    <!-- Photo Modal End -->
+
     <script src="/scripts/tag.js"></script>
 </body>
 </html>

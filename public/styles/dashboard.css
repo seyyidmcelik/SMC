@@ -746,6 +746,9 @@ section#photos > img {
 }
 
 @media screen and (max-width: 600px) {
+    body,main{
+        height: 100dvh;
+    }
     main {
         height: max-content;
     }

@@ -92,6 +92,9 @@ main .text {
 }
 
 @media screen and (max-width: 600px) {
+    body,main{
+        height: 100dvh;
+    }
     .text h1 {
         font-size: 50px;
     }

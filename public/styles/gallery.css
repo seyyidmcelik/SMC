@@ -277,4 +277,7 @@ main {
 }
 
 @media screen and (max-width: 600px) {
+    body,main{
+        height: 100dvh;
+    }
 }

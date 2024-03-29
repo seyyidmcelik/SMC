@@ -6,6 +6,7 @@
 
 Full-stack JavaScript social media application based on Node JS
 
+### Visit and explore the [smc](https://smc-jn68.onrender.com/)
 
 ## Tools and Technologies
 

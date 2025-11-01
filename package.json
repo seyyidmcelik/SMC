@@ -21,10 +21,10 @@
     "jsonwebtoken": "^9.0.0",
     "method-override": "^3.0.0",
     "mongoose": "^6.8.3",
-    "nodemailer": "^6.9.1",
+    "nodemailer": "^7.0.10",
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^3.1.10"
   }
 }
